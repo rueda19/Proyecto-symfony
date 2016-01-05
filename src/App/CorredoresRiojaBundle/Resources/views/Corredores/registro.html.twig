@@ -1,0 +1,21 @@
+{% extends "AppCorredoresRiojaBundle:Corredores:zonacorredores.html.twig" %}
+
+{% block stylesheets %}
+    <link href="{{ asset('/bundles/appcorredoresrioja/css/carrerasrioja.css') }}" rel="stylesheet" media="all" type="text/css">
+    <link href="{{ asset('bundles/appcorredoresrioja/css/formulario.css') }}" rel="stylesheet" media="all" type="text/css">   
+{% endblock %}
+
+{% block title %}
+    Bienvenido a Carreras por La Rioja
+{% endblock %}
+
+{% block content %}
+    <div class="clear"> </div>
+    <div class="contenido"> 
+        <h1>Nuevo corredor</h1>
+    <form action="{{ path('app_corredores_rioja_registro') }}" method="post" {{ form_enctype(formulario) }}>
+        {{ form_widget(formulario) }}
+    </form>
+    <div class="clear"> </div>
+    </div>
+{% endblock %}

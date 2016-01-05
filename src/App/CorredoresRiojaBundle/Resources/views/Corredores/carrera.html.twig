@@ -1,0 +1,74 @@
+{% extends 'AppCorredoresRiojaBundle:Corredores:zonacorredores.html.twig' %}
+
+{% block title %}
+    Bienvenido a Carreras por La Rioja
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('/bundles/appcorredoresrioja/css/carrerasrioja.css') }}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div id="migas">
+        <div class="clear"></div> 
+    </div>
+    <div class="contenido">
+        {% if carrera!=null %}
+        <div class="centro">
+            <h1>{{ carrera.nombre }}</h1>
+            <div class="parteCelda">
+                <img src="{{ carrera.imagen }}"/>
+            </div>
+            <div class="parteCelda2">
+                <p>Carrera por {{ carrera.Organizacion.nombre }}</p>
+                <p>Fecha celebración: {{ carrera.FechaCelebración | date('d/m/Y H:i') }}</p>
+                <p>Distancia: {{ carrera.Distancia }}</p>
+                <p>Organiza: <a href="{{ path('app_corredores_rioja_organizacion_slug',{'slug': carrera.Organizacion.slug}) }}">{{ carrera.Organizacion.nombre }}</a></p>  
+            </div>
+        </div>
+        <div class="clear"></div>
+        
+        {% if estaDisponible %} 
+        <div class="centro">
+            <h3>Tienes hasta el  {{ carrera.FechaLímiteInscripción | date('d') }} de {{ carrera.FechaLímiteInscripción | date('F') }} de {{ carrera.FechaLímiteInscripción | date('Y') }} para inscribirte. </h3>
+            <div style="float:right; padding:10px 5px">
+                <a style="padding:5px 8px 5px 10px;background:#5C7E6D;color:#FFF" 
+                   href="{{ path('app_corredores_rioja_inscribir',{'slug': carrera.slug}) }}" ><span>Inscríbete</span> </a>
+            </div>
+            <div class="clear"></div> 
+             
+            <h3>Inscritos:</h3>
+            {% if participantes==null %}
+                Todavía no hay inscritos en esta carrera.
+            {% else %}
+            <ol>
+                {% for par in participantes %}
+                <li>{{ par.corredor.nombre }}</li>
+                {% endfor %}
+            </ol>
+            {% endif %}
+            
+        {% else %}
+            <div class="centro">
+                <h3>Lo sentimos, ya no te puedes inscribir a esta carrera.</h3>   
+                <div class="clear"></div> 
+                <h3>Clasificación:</h3>   
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>Nombre</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>                         
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+            
+        </div>
+        {% endif %}
+        <div class="clear"> </div> 
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+services:
+    carreras:
+        alias: carrerasInMemory
+    carrerasInMemory:
+        class: App\CorredoresRiojaInfrastructure\Repository\InMemoryCarreraRepository
+    organizaciones:
+        alias: organizacionesInMemory
+    organizacionesInMemory:
+        class: App\CorredoresRiojaInfrastructure\Repository\InMemoryOrganizacionRepository
+    participantes:
+        alias: participantesInMemory
+    participantesInMemory:
+        class: App\CorredoresRiojaInfrastructure\Repository\InMemoryParticipanteRepository
+    corredoresrepository:
+        alias: corredoresrepositoryInMemory
+    corredoresrepositoryInMemory:   
+        class: App\CorredoresRiojaInfrastructure\Repository\InMemoryCorredorRepository
+    corredores_user_provider:
+        class: App\CorredoresRiojaBundle\Security\CorredorUserProvider
+        arguments: ["@corredoresrepository"]
+    organizaciones_user_provider:
+        class: App\CorredoresRiojaBundle\Security\OrganizacionUserProvider
+        arguments: ["@organizaciones"]
+    organizacion.ownervoter:
+        class: App\CorredoresRiojaBundle\Security\OwnerVoter
+        tags:
+            - { name: security.voter }
+        
+#    app_corredores_rioja.example:
+#        class: App\CorredoresRiojaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

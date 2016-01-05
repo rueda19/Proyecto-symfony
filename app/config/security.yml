@@ -1,0 +1,83 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    
+    access_decision_manager:
+        strategy: unanimous
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        corredores:
+            id: corredores_user_provider
+        in_memory:
+            memory: ~
+        organizaciones:
+            id: organizaciones_user_provider
+        in_memory:
+            memory: ~
+    
+    access_control:
+        - { path: ^/(es|en)/corredores/perfil, roles: ROLE_CORREDOR}
+        - { path: ^/(es|en)/corredores/inscribir, roles: ROLE_CORREDOR}
+        - { path: ^/(es|en)/corredores/miscarreras, roles: ROLE_CORREDOR}
+        - { path: ^/(es|en)/organizaciones/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(es|en)/organizaciones/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(es|en)/organizaciones, roles: ROLE_ORGANIZACION}
+            
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        
+        default:
+            pattern: ^/(es|en)/corredores
+            anonymous: ~
+            http_basic: ~
+            form_login:
+                default_target_path: app_corredores_rioja_homepage
+                login_path: usuario_login
+                check_path: usuario_login_check
+            logout:
+                path: usuario_logout
+                target: app_corredores_rioja_homepage
+            provider: corredores
+        
+        default2:
+            pattern: ^/(es|en)/organizaciones
+            anonymous: ~
+            http_basic: ~
+            form_login:
+                default_target_path: app_organizaciones_rioja_homepage
+                login_path: organizaciones_login
+                check_path: organizaciones_login_check
+            logout:
+                path: organizaciones_logout
+                target: app_organizaciones_rioja_homepage
+            provider: organizaciones    
+            
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+        
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        
+    encoders:
+        App\CorredoresRiojaDomain\Model\Corredor:
+            algorithm: bcrypt
+            cost: 12
+        App\CorredoresRiojaBundle\Security\CorredorUser:
+            algorithm: bcrypt
+            cost: 12
+        App\CorredoresRiojaDomain\Model\Organizacion:
+            algorithm: bcrypt
+            cost: 12
+        App\CorredoresRiojaBundle\Security\OrganizacionUser:
+            algorithm: bcrypt
+            cost: 12

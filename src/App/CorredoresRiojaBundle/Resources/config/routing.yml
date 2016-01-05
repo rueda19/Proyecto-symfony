@@ -1,0 +1,45 @@
+app_corredores_rioja_homepage:
+    locales:  { en: "/home", es: "/portada" }
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:index }
+
+app_corredores_rioja_carreras:
+    locales:  { en: "/races", es: "/carreras" }
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:showCarreras }
+    
+app_corredores_rioja_carrera_slug:
+    path:     /carrera/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:showCarreraSlug }
+
+app_corredores_rioja_organizacion_slug:
+    path:     /organizacion/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:showOrganizacionSlug }
+    
+app_corredores_rioja_registro:
+    path:     /registro
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:registro }
+    
+usuario_login:
+    path:     /login
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:login }
+
+usuario_login_check:
+    path:     /login_check
+    
+usuario_logout:
+    path:     /logout
+    
+app_corredores_rioja_miscarreras:
+    path:     /miscarreras
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:miscarreras }
+    
+app_corredores_rioja_perfil:
+    path:     /perfil
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:perfil }
+    
+app_corredores_rioja_inscribir:
+    path:     /inscribir/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:inscribir }
+    
+app_corredores_rioja_desapuntar:
+    path:     /desapuntar/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:corredores:desapuntar }

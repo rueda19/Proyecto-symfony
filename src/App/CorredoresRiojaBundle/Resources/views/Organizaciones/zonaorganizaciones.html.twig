@@ -1,0 +1,35 @@
+{% extends 'AppCorredoresRiojaBundle:Organizaciones:base.html.twig' %}
+
+{% block submenu %}
+    <div class="barra_menus">
+
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="{{ path('app_organizaciones_rioja_homepage') }}">Portada<br></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_organizaciones_rioja_registro_carrera') }}">Añadir carrera<br></a>
+                </li>
+                <li>
+                    <a href="{{ path('app_organizaciones_rioja_mis_carreras_creadas') }}">Modificar Carrera<br></a>
+                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li>
+                        <a href="{{ path('organizaciones_logout') }}">Logout<br></a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('organizaciones_login') }}">Login<br></a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div style="clear: left;"></div>
+        </div>
+    </div>     
+    <div class="sombra">
+        <div class="nucleo">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

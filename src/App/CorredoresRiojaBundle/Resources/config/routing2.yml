@@ -1,0 +1,29 @@
+app_organizaciones_rioja_homepage:
+    locales:  { en: "/home", es: "/portada" }
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:index }
+    
+app_organizaciones_rioja_registro:
+    path:     /registro
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:registro }
+    
+organizaciones_login:
+    path:     /login
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:login }
+
+organizaciones_login_check:
+    path:     /login_check
+    
+organizaciones_logout:
+    path:     /logout
+    
+app_organizaciones_rioja_registro_carrera:
+    path:     /anadirCarrera
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:registrocarrerra }
+    
+app_organizaciones_rioja_registro_modificar_carrera:
+    path:     /modificarCarrera/{slug}
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:modificarcarerra }
+    
+app_organizaciones_rioja_mis_carreras_creadas:
+    path:     /misCarrerasCreadas
+    defaults: { _controller: AppCorredoresRiojaBundle:organizaciones:misCarrerasCreadas }

@@ -1,0 +1,44 @@
+{% extends 'AppCorredoresRiojaBundle:Organizaciones:zonaorganizaciones.html.twig' %}
+
+{% block title %}
+    Bienvenido a Carreras por La Rioja
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('/bundles/appcorredoresrioja/css/carrerasrioja.css') }}" rel="stylesheet" media="all" type="text/css">
+    <link href="{{ asset('/bundles/appcorredoresrioja/css/entrada.css') }}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+    
+    <div class="contenido">
+            <div class="clear"> </div>
+    
+    <h1>Acceso de organizaciones registrados</h1>
+    
+    {% if error %}
+        <h2 style="font-weight: bold; color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</h2>
+    {% endif %}
+    
+    <form action="{{ path('organizaciones_login_check') }}" method="post" class="izda" style="width: 150px; padding-right: 100px; padding-top: 30px;">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
+        
+        <button type="submit">login</button>
+    </form>
+        
+    <div class="nuevo izda">
+        <div>
+            <p style="font-weight:bold; margin-top:5px">Nuevo Corredor.</p>
+            <p style="margin-top:5px;line-height:1.4em;">Para poder inscribirte en las carreras es necesario registrarse. </p>
+        </div>
+
+        <div  class="registrob">
+            <a href="{{ path('app_organizaciones_rioja_registro') }}">REGISTRESE</a>
+        </div> 
+    </div>	    
+    </div>
+{% endblock %}

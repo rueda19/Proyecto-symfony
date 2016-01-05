@@ -1,0 +1,33 @@
+{% extends 'AppCorredoresRiojaBundle:Corredores:zonacorredores.html.twig' %}
+
+{% block title %}
+    Bienvenido a Carreras por La Rioja
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('/bundles/appcorredoresrioja/css/carrerasrioja.css') }}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div id="migas">
+        <div class="clear"></div> 
+    </div>
+    <div class="contenido">
+        {% if organizacion!=null %}
+        <div class="centro">
+            <h1>{{ organizacion.Nombre }}</h1>
+            <p>{{ organizacion.Descripción }}</p>
+            <p><a href="mailto:{{ organizacion.email }}">Contacta</a></p>
+            <p>Carreras organizadas:</p>
+            {% if carreras!=null %}
+            <ol>
+                {% for car in carreras %}
+                <li><a href="{{ path('app_corredores_rioja_carrera_slug',{'slug': car.slug}) }}">{{ car.nombre }}</a></li>
+                {% endfor %}
+            </ol>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="clear"> </div>   
+    </div>
+{% endblock %}
